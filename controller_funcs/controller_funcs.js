@@ -12,7 +12,9 @@ const addShoppingItem = (req, res) => {
 
 const getSingleShoppingItem = (req, res) => {
     const {item_name} = req.params;
-    return items.find((item) => item.item_name === item_name)
+    return items.find((item) => {
+        item.item_name === item_name
+    })
     
 }
 
