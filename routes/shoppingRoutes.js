@@ -10,6 +10,6 @@ const {
 } = require('../controller_funcs/controller_funcs')
 
 router.route('/').get(getAllShoppingItems).post(addShoppingItem)
-router.route('/:name').get(getSingleShoppingItem).patch(updateShoppingItem).delete(deleteShoppingItem)
+router.route('/:item_name').get(getSingleShoppingItem).patch(updateShoppingItem).delete(deleteShoppingItem)
 
 module.exports = router

@@ -11,19 +11,27 @@ const addShoppingItem = (req, res) => {
 }
 
 const getSingleShoppingItem = (req, res) => {
+    console.log('fart')
     const {item_name} = req.params;
-    return items.find((item) => {
-        item.item_name === item_name
-    })
-    
+    const result = DB.find(item => item.item_name === item_name) 
+    res.status(200).json(result)
 }
 
 const deleteShoppingItem = (req, res) => {
-    res.send('Deleting a single item')
+    const {item_name} = req.params
+    const result = DB.filter((val, idx) => {
+        if (val.item_name !== item_name){
+            DB.splice(idx, 1)
+            return true
+        }
+        return false
+    })
+    res.status(200).json({msg: 'ITEM DELETED', new_list: result}) 
 }
 
 const updateShoppingItem = (req, res) => {
-    res.send('Updating single shopping item')
+    const {new_name, new_price} = req.params
+    
 }
 
 module.exports = {
@@ -31,5 +39,5 @@ module.exports = {
     addShoppingItem,
     getSingleShoppingItem,
     deleteShoppingItem,
-    updateShoppingItem
+    updateShoppingItem,
 }
